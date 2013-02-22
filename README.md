@@ -2,6 +2,8 @@
 
 Search BundleIdentifier of apps from AppStore. It's useful for MobileSubstrate filter, AppList filter etc...
 
+![BundleIdentifierSearcher](https://raw.github.com/r-plus/BundleIdentifierSearcher/master/SS.png)
+
 ## Require
 
 * OS X 10.7 or later.
