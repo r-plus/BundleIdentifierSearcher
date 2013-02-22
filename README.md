@@ -4,6 +4,10 @@ Search BundleIdentifier of apps from AppStore. It's useful for MobileSubstrate f
 
 ![BundleIdentifierSearcher](https://raw.github.com/r-plus/BundleIdentifierSearcher/master/SS.png)
 
+## feature
+
+* Double click to copy bundleIdentifier.
+
 ## Require
 
 * OS X 10.7 or later.
