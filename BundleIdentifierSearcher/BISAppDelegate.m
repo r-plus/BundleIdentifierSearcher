@@ -30,9 +30,9 @@
 {
     if ([self.tableView clickedRow] >= 0) {
         Log(@"double clicked");
-        NSString *bundleIdentifier = [[self.results objectAtIndex:[self.tableView clickedRow]] objectForKey:@"bundleId"];
+        NSString *bundleIdentifier = [[_arrayController selectedObjects][0] bundleIdentifier];
         NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
-        [pasteboard declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:self];
+        [pasteboard declareTypes:@[NSStringPboardType] owner:self];
         [pasteboard setString:bundleIdentifier forType:NSPasteboardTypeString];
     }
 }
@@ -73,12 +73,12 @@
     NSData *jsonData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     NSMutableArray *array = [NSMutableArray array];
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
-    self.results = [dict objectForKey:@"results"];
+    self.results = dict[@"results"];
     for (id app in self.results) {
         BISApplication *application = [[BISApplication alloc] init];
-        NSURL *iconURL = [NSURL URLWithString:[app objectForKey:@"artworkUrl60"]];
+        NSURL *iconURL = [NSURL URLWithString:app[@"artworkUrl60"]];
         application.icon = [[NSImage alloc] initWithContentsOfURL:iconURL];
-        application.bundleIdentifier = [app objectForKey:@"bundleId"];
+        application.bundleIdentifier = app[@"bundleId"];
         [array addObject:application];
     }
     [_arrayController setContent:array];
